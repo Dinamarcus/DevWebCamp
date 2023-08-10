@@ -1,0 +1,139 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+.disabled {
+    transform: translateY(10rem);
+    transition: transform 1s ease;
+}
+.notDisabled {
+    transition:transform 1s ease;
+    transform: translateX(0rem);
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+
+    &__lista {
+        list-style: none;
+        padding: 2rem 0 2rem 2rem;
+        border: 1px solid darken(v.$gris-claro, 20);
+        border-radius: .5rem;
+
+        @include m.tablet {
+            @include m.grid(2, 2rem);
+        }
+    }
+
+    &__lista--item {
+        &:hover {
+            cursor: pointer;
+            color: v.$azul;
+        }
+        padding: 0;
+
+        &--seleccionado {
+            color: v.$negro;
+            cursor: default;
+        }
+    }
+
+    &__lista--text {
+        padding: 0 0 0 2rem;
+    }
+
+    &__fieldset {
+        border: none;
+        margin: 1rem;
+        padding: 0;
+    }
+
+    &__legend {
+        color: v.$gris;
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+
+    &__campo {
+        overflow: hidden;
+        display: flex;  
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    &__contenedor--icono {
+        display: flex;
+        border-radius: .5rem;
+        overflow: hidden;
+    }
+    
+    &__icono {
+        background-color: v.$gris-oscuro;
+        width: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            color: v.$blanco;
+            font-size: 2rem;
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 1.8rem;
+        color: rgba(v.$negro, .8);
+    }
+
+    &__input, 
+    &__select{
+        padding: 1rem;
+        outline: none;
+        border: 1px solid darken(v.$gris-claro, 20);
+        border-radius: .5rem;
+        transition: transform 1s ease;
+
+        &--file {
+            border: none;
+            padding: 1rem 0;
+        }
+
+        &--sociales {
+            @extend .formulario__input;
+            flex: 1;   
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    &__radio {
+        display: flex;
+        gap: 2rem;
+        
+    }
+
+    &__texto {
+        margin-top: 3rem;
+    }
+
+    &__imagen {
+        max-width: 20rem
+    }
+
+    &__listado {
+        @include m.tags;
+    }
+
+    &__submit {
+        @include m.boton(v.$azul, v.$blanco);
+        width: auto;
+        align-self: flex-start; // Para que no ocupe todo el ancho del contenedor padre (formulario) y se ajuste al contenido. 
+
+        &--registrar,
+        &--full {
+            width: 100%;
+        }
+    }
+}
+

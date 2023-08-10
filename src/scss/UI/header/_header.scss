@@ -1,0 +1,134 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.header {
+    min-height: 60rem;
+    background-image: url(../img/grafico.svg), url(../img/grafico.svg), linear-gradient(to right, rgba(v.$negro, 1), rgba(v.$negro, .5)), image-set(url(../img/header.webp) 1x, url(../img/header.jpg) 1x);
+    background-repeat: no-repeat;
+    background-size: 400px, 400px, cover, cover, cover;
+    background-position: top left, bottom right, center center, center center, center center;
+
+    &__contenedor {
+        @include m.contenedor;   
+    }
+
+    &__nav{
+        padding: 5rem 0;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        @include m.tablet {
+            justify-content: flex-end;
+        }
+    }
+
+    &__enlace  {
+        @include m.enlace;
+    }   
+
+    &__form {
+        display: flex
+    }
+
+    &__submit {
+        @extend .header__enlace;
+    }
+
+    &__logo {
+        @include m.texto-fluido(4rem, 8rem);
+        @include m.texto-degradado-solo(v.$azul, v.$secundario);
+        @include m.tablet {
+            @include m.texto-fluido(3rem, 6rem);
+        }
+    }
+
+    &__contenido {
+        padding: 10rem 0 0 0;
+        @include m.tablet {
+            padding: 5rem 0 0 0;
+        }
+    }
+
+    &__contenido--texto {
+        margin-top: 15rem;
+        margin-left: 2rem;
+
+        & .header__texto {
+            font-size: 3rem;
+            font-weight: v.$bold;
+            color: v.$blanco;
+            margin: 2rem 0;
+            text-align: center;
+            text-transform: uppercase;
+            @include m.tablet {
+                text-align: left;
+            }
+
+            &--modalidad {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &__boton {
+        @include m.boton(v.$secundario, v.$blanco);
+        text-transform: uppercase;
+        margin: 2rem 0;
+        @include m.tablet {
+            width: auto;
+        }
+    }
+
+    &__effect h1 {
+        position: absolute;
+        margin-left: 2rem;
+        @include m.tablet {
+            margin-left: 0;
+        }
+    }
+      
+    &__effect h1.border {
+        color: black;  
+        text-shadow:
+          -1px -1px 0 white, 
+          1px -1px 0 white,
+          -1px 1px 0 white,
+          1px 1px 0 white;  
+    }
+      
+    &__effect h1.wave {
+    background-clip: text; //Aplica el degradado al texto y no al contenedor
+    -webkit-text-fill-color: transparent; //Aplica el degradado al texto y no al contenedor. El texto se ve transparente porque el degradado se aplica al texto y no al contenedor
+    color: #09f;
+    animation: wave 3s ease-in-out infinite;
+    }
+      
+    @keyframes wave {
+        0%, 100% {
+        clip-path: polygon(
+                0% 47%,
+                10% 48%,
+                33% 54%,
+                54% 60%,
+                70% 61%,
+                84% 59%,
+                100% 52%,
+                100% 100%,
+                0% 100%
+            );  
+        }
+      
+        50% {
+            clip-path: polygon(0% 60%,
+                15% 65%,
+                34% 66%,
+                51% 62%,
+                67% 50%,
+                84% 45%,
+                100% 46%,
+                100% 100%,
+                0% 100%
+            );
+        }
+    }
+}

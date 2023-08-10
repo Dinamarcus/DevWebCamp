@@ -1,0 +1,14 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.menu-redes {
+    @include m.menu-social(v.$blanco, 2rem);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    margin: 0;
+    @include m.tablet {
+        justify-content: flex-end;
+    }
+}
